@@ -10,11 +10,9 @@ import UIKit
 
 class LoginViewController: NSObject {
     
-    public class func login(_ parameters: [String: String], _ successHandler: @escaping networkSuccessHandler, _ failureHandler: @escaping networkFailureHandler) -> Void {
+    public class func login(_ url: URL,_ parameters: [String: String], _ successHandler: @escaping networkSuccessHandler, _ failureHandler: @escaping networkFailureHandler) -> Void {
         
-        let url: URL = NSURL(string: "http://vtsosonlinemobile.pcctg.net/Service1.svc/Login/") as! URL
-        
-        
+
         NetworkManager.post(url, parameters as AnyObject, { (response, data) in
             DispatchQueue.main.sync {
                 if data is [String: Any] {

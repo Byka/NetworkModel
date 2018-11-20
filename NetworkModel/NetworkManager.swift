@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SystemConfiguration
 
 public typealias networkSuccessHandler = (_ response: URLResponse?, _ json: Any) -> Void
 public typealias networkFailureHandler = (_ response: URLResponse?, _ error: Error?) -> Void
@@ -21,6 +22,8 @@ class NetworkManager: NSObject {
     // - requestBody: sendign request details through the web service
     // - completionHandler: Transfer the JSON data throught success completion block if web service is success
     // - FailureHandler: Return the Failure resions if any web service is failed to get the data.
+    
+    
     
     
     class func post(_ url: URL, _ requestBody: AnyObject, _ successHandler: @escaping networkSuccessHandler, _ failureHandler: @escaping networkFailureHandler) -> Void {
@@ -84,8 +87,37 @@ class NetworkManager: NSObject {
             }
             
         }.resume()
-        
     }
+
+    
+    //Checking for internet connection
+        class func isConnectedToNetwork() -> Bool {
+            var zeroAddress = sockaddr_in()
+            zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
+            zeroAddress.sin_family = sa_family_t(AF_INET)
+            
+            guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
+                $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                    SCNetworkReachabilityCreateWithAddress(nil, $0)
+                }
+            }) else {
+                return false
+            }
+            
+            var flags: SCNetworkReachabilityFlags = []
+            if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+                return false
+            }
+            if flags.isEmpty {
+                return false
+            }
+            
+            let isReachable = flags.contains(.reachable)
+            let needsConnection = flags.contains(.connectionRequired)
+            
+            return (isReachable && !needsConnection)
+        }
+    
     
     
 }

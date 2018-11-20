@@ -18,22 +18,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nF-Pk-9TI">
-                                <rect key="frame" x="117" y="126" width="146" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Call Post Service"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nF-Pk-9TI">
+                                <rect key="frame" x="134" y="100" width="107" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="Get Service">
+                                    <color key="titleColor" red="0.0" green="0.18424689618270751" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
+                                    <action selector="callGetServiceAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vcc-0e-luZ"/>
                                     <action selector="callPostServiceAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ixt-ck-SFF"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="onV-Yo-AeU">
+                                <rect key="frame" x="130.5" y="176" width="114" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="Post Service">
+                                    <color key="titleColor" red="0.0" green="0.18424689620000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="postServiceAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hbK-dp-zut"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLQ-fQ-t32">
+                                <rect key="frame" x="84" y="242" width="207" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="Check Net Connection">
+                                    <color key="titleColor" red="0.0" green="0.18424689620000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="checkInterNetConnection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HJQ-J5-LK9"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0hQ-jy-kdl">
+                                <rect key="frame" x="137.5" y="288" width="100" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="iD0-ts-yrS"/>
+                                    <constraint firstAttribute="width" constant="100" id="sH2-eq-L0d"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.91160736652807406" blue="0.6918597137899184" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="0hQ-jy-kdl" firstAttribute="top" secondItem="bLQ-fQ-t32" secondAttribute="bottom" constant="10" id="22V-QE-wIr"/>
+                            <constraint firstItem="2nF-Pk-9TI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="8ct-fG-8jx"/>
+                            <constraint firstItem="2nF-Pk-9TI" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="akE-cv-ucd"/>
+                            <constraint firstItem="bLQ-fQ-t32" firstAttribute="centerX" secondItem="onV-Yo-AeU" secondAttribute="centerX" id="c1L-Od-L8i"/>
+                            <constraint firstItem="onV-Yo-AeU" firstAttribute="top" secondItem="2nF-Pk-9TI" secondAttribute="bottom" constant="40" id="e04-6l-SZa"/>
+                            <constraint firstItem="0hQ-jy-kdl" firstAttribute="centerX" secondItem="bLQ-fQ-t32" secondAttribute="centerX" id="pc8-zg-xJe"/>
+                            <constraint firstItem="onV-Yo-AeU" firstAttribute="centerX" secondItem="2nF-Pk-9TI" secondAttribute="centerX" id="qi4-zg-SCH"/>
+                            <constraint firstItem="bLQ-fQ-t32" firstAttribute="top" secondItem="onV-Yo-AeU" secondAttribute="bottom" constant="30" id="vIr-ZP-AHW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="netConnectionView" destination="0hQ-jy-kdl" id="kRB-Vo-XFz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="24.800000000000001" y="30.134932533733135"/>
         </scene>
     </scenes>
 </document>
